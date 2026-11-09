@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoomStopper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f0f; /* YouTube Dark Mode Background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* The "Short" Container */
+        .short-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            max-height: 800px;
+            background-color: #121212;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+        }
+
+        /* Desktop border */
+        @media (min-width: 450px) {
+            .short-container {
+                height: 90vh;
+                border-radius: 16px;
+                border: 1px solid #333;
+            }
+        }
+
+        /* Right Side Action Buttons (Like, Dislike, Share) */
+        .right-actions {
+            position: absolute;
+            right: 16px;
+            bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .action-label {
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Bottom Info Section (Channel Name & Description) */
+        .bottom-info {
+            padding: 16px;
+            padding-right: 80px; /* Make room for right buttons */
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .app-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .app-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .subscribe-btn {
+            background-color: white;
+            color: black;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #ddd;
+            margin-bottom: 16px;
+        }
+
+        .music-ticker {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="short-container">
+        
+        <!-- Right Side Buttons -->
+        <div class="right-actions">
+            <div class="action-item">
+                <!-- REPLACE # WITH YOUR APK GITHUB RELEASE LINK -->
+                <a href="#" class="action-btn">⬇️</a>
+                <span class="action-label">Install</span>
+            </div>
+            <div class="action-item">
+                <!-- REPLACE # WITH YOUR VIRUSTOTAL LINK -->
+                <a href="#" class="action-btn">🛡️</a>
+                <span class="action-label">0/70 Safe</span>
+            </div>
+            <div class="action-item">
+                <!-- REPLACE # WITH YOUR GITHUB REPO LINK -->
+                <a href="#" class="action-btn">💻</a>
+                <span class="action-label">Code</span>
+            </div>
+        </div>
+
+        <!-- Bottom Info -->
+        <div class="bottom-info">
+            <div class="app-header">
+                <div class="app-icon">D</div>
+                <div class="app-name">@DoomStopper</div>
+                <!-- REPLACE # WITH YOUR APK GITHUB RELEASE LINK -->
+                <a href="#" class="subscribe-btn">Download APK</a>
+            </div>
+            <div class="description">
+                The anti-doomscrolling app Big Tech doesn't want you to have. 
+                #productivity #nosurf #opensource #android
+            </div>
+            <div class="music-ticker">
+                🎵 Original Audio - DoomStopper v1.0
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
