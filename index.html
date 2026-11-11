@@ -6,11 +6,17 @@
     <title>DoomStopper</title>
     <style>
         :root {
-            --glow-color: #00ffff;
-            --bg-dark: #0a0a0a;
-            --short-bg: #151515;
-            --text-main: #f0f0f0;
-            --text-muted: #aaaaaa;
+            /* Warm homey light glow */
+            --glow-color: #ffd8a8; 
+            --glow-strong: #ffb86c;
+            
+            --bg-dark: #0f0c0c;
+            --short-bg: #1a1515;
+            --text-main: #f5f0f0;
+            --text-muted: #a69a9a;
+            
+            /* Uniform tiny red tint for background */
+            --bg-short-color: #2b1f1f; 
         }
 
         * {
@@ -30,14 +36,15 @@
         /* --- Background Scrolling Shorts --- */
         #bg-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            /* Bleed the background past the edges to prevent the mobile black-bar bug */
+            top: -10vh;
+            left: -10vw;
+            width: 120vw;
+            height: 120vh;
             z-index: -1;
             display: flex;
-            gap: 10px;
-            opacity: 0.75;
+            gap: 15px; /* Column spacing */
+            opacity: 0.25;
             overflow: hidden;
             justify-content: center;
         }
@@ -45,26 +52,21 @@
         .bg-col {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 15px; /* Vertical short spacing (matches column spacing) */
             width: 60px;
         }
 
         .bg-short {
             width: 60px;
             height: 100px;
-            padding: 5px;
-            background-color: #333;
+            background-color: var(--bg-short-color);
             border-radius: 4px;
             flex-shrink: 0;
         }
 
         /* Infinite Scroll Animations */
-        .scroll-up {
-            animation: scrollUp 40s linear infinite;
-        }
-        .scroll-down {
-            animation: scrollDown 40s linear infinite;
-        }
+        .scroll-up { animation: scrollUp 40s linear infinite; }
+        .scroll-down { animation: scrollDown 40s linear infinite; }
 
         @keyframes scrollUp {
             0% { transform: translateY(0); }
@@ -82,34 +84,35 @@
             position: relative;
         }
 
-        /* Light in the dark gradient */
+        /* Warm Light gradient */
         header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 184, 108, 0.15) 0%, rgba(15, 12, 12, 0) 70%);
             z-index: -1;
             pointer-events: none;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
             text-shadow: 
-                0 0 10px rgba(0, 255, 255, 0.8),
-                0 0 20px rgba(0, 255, 255, 0.6),
-                0 0 40px rgba(0, 255, 255, 0.4),
-                0 0 80px rgba(0, 255, 255, 0.2);
+                0 0 10px rgba(255, 184, 108, 0.8),
+                0 0 20px rgba(255, 184, 108, 0.6),
+                0 0 40px rgba(255, 184, 108, 0.4),
+                0 0 80px rgba(255, 216, 168, 0.2);
             margin-bottom: 30px;
         }
 
+        /* --- Buttons --- */
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -118,7 +121,7 @@
         }
 
         .btn {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glow-color);
             color: #fff;
             padding: 12px 24px;
@@ -128,24 +131,48 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             backdrop-filter: blur(5px);
         }
 
         .btn:hover {
-            background: var(--glow-color);
-            color: #000;
-            box-shadow: 0 0 15px var(--glow-color);
+            background: rgba(255, 216, 168, 0.1);
+            box-shadow: 0 0 15px rgba(255, 184, 108, 0.4);
         }
 
         .btn.primary {
-            background: var(--glow-color);
-            color: #000;
+            background: var(--glow-strong);
+            color: #1a1005;
+            border: none;
         }
         .btn.primary:hover {
             background: #fff;
-            border-color: #fff;
-            box-shadow: 0 0 20px #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* QR Circle Icon inside button */
+        .qr-icon {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        /* Device Specific Display Rules */
+        .mobile-only { display: none !important; }
+        
+        @media (max-width: 768px) {
+            .desktop-only { display: none !important; }
+            .mobile-only { display: flex !important; }
+            .hero-buttons { flex-direction: column; align-items: stretch; width: 100%; max-width: 350px; margin: 0 auto; }
+            .btn { width: 100%; }
         }
 
         /* --- Mock Shorts Section --- */
@@ -154,78 +181,81 @@
             margin: 0 auto;
             padding: 40px 20px 80px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+            flex-direction: column; /* Lined up in a single column */
+            align-items: center;
+            gap: 50px;
         }
 
         .mock-short {
             position: relative;
-            width: 320px;
-            height: 568px; /* 9:16 aspect ratio */
+            width: 100%;
+            max-width: 360px;
+            height: 640px; /* 9:16 aspect ratio */
             background-color: var(--short-bg);
-            border: 1px solid #333;
+            border: 1px solid #3a2a2a;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
             display: flex;
             flex-direction: column;
+        }
+
+        /* Desktop Zipper Pattern Animation */
+        @media (min-width: 769px) {
+            .mock-short {
+                opacity: 0;
+                transition: transform 0.8s cubic-bezier(0.1, 0, 0.1, 1), opacity 0.8s ease-out;
+            }
+            .mock-short:nth-child(odd) { transform: translateX(-150px); }
+            .mock-short:nth-child(even) { transform: translateX(150px); }
+            .mock-short.visible {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* Inner Content */
         .short-text {
             flex-grow: 1;
-            padding: 25px 60px 100px 20px;
+            padding: 25px 60px 100px 25px;
             overflow-y: auto;
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.6;
         }
 
-        .short-text::-webkit-scrollbar {
-            width: 4px;
-        }
-        .short-text::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 4px;
-        }
+        .short-text::-webkit-scrollbar { width: 4px; }
+        .short-text::-webkit-scrollbar-thumb { background: #554; border-radius: 4px; }
 
         .short-text h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             color: var(--glow-color);
         }
         
-        .short-text p, .short-text ul {
-            margin-bottom: 15px;
-        }
-        .short-text ul {
-            padding-left: 20px;
-        }
-        .short-text li {
-            margin-bottom: 8px;
-        }
+        .short-text p, .short-text ul { margin-bottom: 15px; }
+        .short-text ul { padding-left: 20px; }
+        .short-text li { margin-bottom: 8px; }
 
         /* Mock UI Elements */
         .ui-right {
             position: absolute;
             right: 15px;
-            bottom: 100px;
+            bottom: 110px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
         .ui-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        /* Tiny placeholder icons inside the circles */
-        .ui-icon::after { content: ''; width: 16px; height: 16px; background: #fff; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+        .ui-icon::after { content: ''; width: 18px; height: 18px; background: #fff; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
         .ui-icon:nth-child(2)::after { clip-path: circle(50% at 50% 50%); }
         .ui-icon:nth-child(3)::after { clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
@@ -238,21 +268,21 @@
 
         .username {
             font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .avatar {
-            width: 30px;
-            height: 30px;
-            background-color: var(--glow-color);
+            width: 32px;
+            height: 32px;
+            background-color: var(--glow-strong);
             border-radius: 50%;
             display: inline-block;
         }
         .caption {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             white-space: nowrap;
             overflow: hidden;
@@ -263,27 +293,29 @@
         .img-placeholder {
             width: 100%;
             height: 250px;
-            background: #222;
-            border: 2px dashed #555;
+            background: #2a1f1f;
+            border: 2px dashed #644;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #777;
+            color: #a77;
             margin-bottom: 15px;
             font-size: 0.9rem;
             padding: 20px;
         }
 
         /* Last Short specific styling */
-        .cta-short .btn {
-            display: block;
+        .cta-short .hero-buttons {
+            flex-direction: column;
             width: 100%;
-            margin-bottom: 10px;
-            text-align: center;
+            padding-right: 10px;
+        }
+        .cta-short .btn {
             font-size: 0.9rem;
             padding: 10px;
+            width: 100%;
         }
 
         /* --- QR Code Modal --- */
@@ -302,12 +334,12 @@
         }
 
         .modal-content {
-            background: #111;
+            background: #1a1515;
             padding: 40px;
             border-radius: 16px;
-            border: 1px solid var(--glow-color);
+            border: 1px solid var(--glow-strong);
             text-align: center;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 30px rgba(255, 184, 108, 0.2);
             position: relative;
         }
 
@@ -335,30 +367,51 @@
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .hero-buttons { flex-direction: column; padding: 0 20px; }
-            .btn { width: 100%; text-align: center; }
+            h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Scrolling Tiny Gray Shorts Background -->
+    <!-- Scrolling Tiny Background Shorts -->
     <div id="bg-container">
         <!-- Columns are generated by JavaScript -->
     </div>
 
+    <!-- SVG definition for the tiny QR Icon inside the buttons -->
+    <svg style="display:none;">
+        <symbol id="qr-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+        </symbol>
+    </svg>
+
     <!-- Header Section -->
     <header>
         <h1 class="glow">DoomStopper</h1>
-        <div class="hero-buttons">
-            <a href="#" class="btn primary">Install Mobile App</a>
-            <button onclick="toggleModal('qrModal')" class="btn">Show QR Code</button>
-            <a href="#" class="btn">Install Chrome Extension</a>
+        
+        <!-- Desktop Buttons (Hidden on Mobile) -->
+        <div class="hero-buttons desktop-only">
+            <button onclick="toggleModal('qrModal')" class="btn">
+                <div class="qr-icon"><svg width="14" height="14"><use href="#qr-svg"></use></svg></div>
+                Install on Phone
+            </button>
+            <a href="#" class="btn primary">Install Chrome Extension</a>
+        </div>
+
+        <!-- Mobile Buttons (Hidden on Desktop) -->
+        <div class="hero-buttons mobile-only">
+            <a href="#" class="btn primary">Install Android App</a>
+            <button onclick="toggleModal('qrModal')" class="btn">
+                <div class="qr-icon"><svg width="14" height="14"><use href="#qr-svg"></use></svg></div>
+                Share with a Friend
+            </button>
         </div>
     </header>
 
-    <!-- App Description (Mock Shorts) -->
+    <!-- App Description (Mock Shorts in a column) -->
     <main class="content-section">
 
         <!-- Short 1 -->
@@ -487,9 +540,25 @@
                 <h2>Take Control</h2>
                 <p>Stop scrolling on autopilot. Install DoomStopper and get your time and happiness back.</p>
                 <br>
-                <a href="#" class="btn primary">Install Mobile App</a>
-                <button onclick="toggleModal('qrModal')" class="btn">Show QR Code</button>
-                <a href="#" class="btn">Install Chrome Extension</a>
+                
+                <!-- Desktop CTA Buttons -->
+                <div class="hero-buttons desktop-only">
+                    <button onclick="toggleModal('qrModal')" class="btn">
+                        <div class="qr-icon"><svg width="14" height="14"><use href="#qr-svg"></use></svg></div>
+                        Install on Phone
+                    </button>
+                    <a href="#" class="btn primary">Install Chrome Extension</a>
+                </div>
+
+                <!-- Mobile CTA Buttons -->
+                <div class="hero-buttons mobile-only">
+                    <a href="#" class="btn primary">Install Android App</a>
+                    <button onclick="toggleModal('qrModal')" class="btn">
+                        <div class="qr-icon"><svg width="14" height="14"><use href="#qr-svg"></use></svg></div>
+                        Share with a Friend
+                    </button>
+                </div>
+
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -508,8 +577,8 @@
     <div id="qrModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="toggleModal('qrModal')">&times;</button>
-            <h2>Scan to Install</h2>
-            <p style="margin-top: 10px; color: var(--text-muted);">Get DoomStopper on your phone</p>
+            <h2>Get the App</h2>
+            <p style="margin-top: 10px; color: var(--text-muted);">Scan this code with a phone</p>
             
             <!-- Replace this div with an actual <img> tag of your QR code -->
             <div class="qr-placeholder">
@@ -520,28 +589,25 @@
     </div>
 
     <script>
-        // Generate Background Scrolling Shorts
+        // 1. Generate Background Scrolling Shorts
         const bgContainer = document.getElementById('bg-container');
-        const numCols = Math.floor(window.innerWidth / 70) + 2; // Calculate how many columns fit
-        const blocksPerCol = 24; // Enough to scroll seamlessly
+        // We use innerWidth + some padding to ensure it covers the screen fully
+        const numCols = Math.floor((window.innerWidth * 1.2) / 75) + 1; 
+        const blocksPerCol = 24; 
 
         for (let i = 0; i < numCols; i++) {
             const col = document.createElement('div');
             col.className = 'bg-col';
             
-            // Create a wrapper for seamless infinite scroll
             const scrollWrapper = document.createElement('div');
-            // Alternate scroll directions for effect
             scrollWrapper.className = i % 2 === 0 ? 'scroll-up' : 'scroll-down';
+            scrollWrapper.style.display = 'flex';
+            scrollWrapper.style.flexDirection = 'column';
+            scrollWrapper.style.gap = '15px';
             
-            // Generate tiny boxes inside the column
-            for (let j = 0; j < blocksPerCol * 2; j++) { // Double the blocks for smooth looping
+            for (let j = 0; j < blocksPerCol * 2; j++) { 
                 const block = document.createElement('div');
                 block.className = 'bg-short';
-                
-                // Add slightly random shades of gray for depth
-
-                
                 scrollWrapper.appendChild(block);
             }
             
@@ -549,19 +615,41 @@
             bgContainer.appendChild(col);
         }
 
-        // Modal Toggle Logic
+        // 2. Zipper Animation Observer (Desktop Only)
+        // Detects when shorts scroll into view and triggers their animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const shortObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // If we are on desktop and the short comes into view
+                if (entry.isIntersecting && window.innerWidth > 768) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Attach observer to all mock shorts
+        document.querySelectorAll('.mock-short').forEach(short => {
+            shortObserver.observe(short);
+        });
+
+        // 3. Modal Toggle Logic
         function toggleModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal.style.display === 'flex') {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // restore background scrolling
+                document.body.style.overflow = 'auto'; 
             } else {
                 modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // prevent background scrolling while modal is open
+                document.body.style.overflow = 'hidden'; 
             }
         }
 
-        // Close modal if user clicks outside the content box
+        // Close modal if user clicks outside the modal content box
         window.onclick = function(event) {
             const modal = document.getElementById('qrModal');
             if (event.target === modal) {
