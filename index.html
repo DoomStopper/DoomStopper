@@ -182,7 +182,7 @@
 
         /* QR Icon inside button */
         .qr-icon {
-            height: 100%; /* 80% of button height */
+            height: 120%; /* 80% of button height */
             aspect-ratio: 1 / 1; /* Keep it perfectly square */
             background: var(--text-main);
             border-radius: 16px;
@@ -359,11 +359,11 @@
             flex-direction: column;
             width: 100%;
             padding-right: 10px;
-            padding-left: 20px;
+            padding-left: 40px;
         }
         .cta-short .btn {
             font-size: 0.9rem;
-            width: 80%;
+            width: 100%;
         }
 
         /* --- QR Code Modal --- */
@@ -427,29 +427,85 @@
     </div>
 
     <!-- Realistic QR Code Graphic used inside the buttons -->
-    <svg style="display:none;">
-        <symbol id="qr-svg" viewBox="0 0 24 24" fill="currentColor">
-            <!-- 3 Main Corner Squares -->
-            <path d="M3 3h6v6H3V3zm2 2v2h2V5H5z"/>
-            <path d="M15 3h6v6h-6V3zm2 2v2h2V5h-2z"/>
-            <path d="M3 15h6v6H3v-6zm2 2v2h2v-2H5z"/>
-            <!-- Scattered Grid Pixels mimicking data -->
-            <rect x="15" y="15" width="2" height="2"/>
-            <rect x="19" y="15" width="2" height="2"/>
-            <rect x="15" y="19" width="2" height="2"/>
-            <rect x="17" y="17" width="2" height="2"/>
-            <rect x="11" y="3" width="2" height="2"/>
-            <rect x="11" y="7" width="2" height="2"/>
-            <rect x="3" y="11" width="2" height="2"/>
-            <rect x="7" y="11" width="2" height="2"/>
-            <rect x="11" y="11" width="2" height="2"/>
-            <rect x="15" y="11" width="2" height="2"/>
-            <rect x="19" y="11" width="2" height="2"/>
-            <rect x="11" y="15" width="2" height="2"/>
-            <rect x="11" y="19" width="2" height="2"/>
-            <rect x="19" y="19" width="2" height="2"/>
-        </symbol>
-    </svg>
+<svg style="display:none;">
+  <symbol id="qr-svg" viewBox="0 0 24 24" fill="currentColor">
+    <!-- Small Internal Alignment Pattern (found inside larger QR codes) -->
+    <path d="M13 13h7v7h-7v-7zm1.5 1.5v4h4v-4h-4zm1.5 1.5h1v1h-1v-1z"/>
+
+    <!-- Dense Inner Data Modules (1.5x1.5 grid blocks) -->
+    <!-- Row 1 -->
+    <rect x="0.5" y="0.5" width="1.5" height="1.5"/>
+    <rect x="3.5" y="0.5" width="3" height="1.5"/>
+    <rect x="8" y="0.5" width="1.5" height="1.5"/>
+    <rect x="12.5" y="0.5" width="1.5" height="1.5"/>
+    <rect x="15.5" y="0.5" width="3" height="1.5"/>
+    <rect x="21.5" y="0.5" width="2" height="1.5"/>
+
+    <!-- Row 2 -->
+    <rect x="2" y="2" width="1.5" height="3"/>
+    <rect x="6.5" y="2" width="1.5" height="1.5"/>
+    <rect x="9.5" y="2" width="3" height="1.5"/>
+    <rect x="14" y="2" width="1.5" height="3"/>
+    <rect x="18.5" y="2" width="1.5" height="1.5"/>
+    <rect x="20" y="3.5" width="3.5" height="1.5"/>
+
+    <!-- Row 3 -->
+    <rect x="0.5" y="5" width="1.5" height="1.5"/>
+    <rect x="5" y="3.5" width="1.5" height="3"/>
+    <rect x="8" y="5" width="3" height="1.5"/>
+    <rect x="12.5" y="5" width="1.5" height="1.5"/>
+    <rect x="17" y="5" width="1.5" height="3"/>
+
+    <!-- Row 4 -->
+    <rect x="2" y="6.5" width="3" height="1.5"/>
+    <rect x="6.5" y="6.5" width="1.5" height="3"/>
+    <rect x="11" y="6.5" width="1.5" height="1.5"/>
+    <rect x="15.5" y="6.5" width="1.5" height="1.5"/>
+    <rect x="20" y="6.5" width="1.5" height="3"/>
+    <rect x="21.5" y="8" width="2" height="1.5"/>
+
+    <!-- Row 5 -->
+    <rect x="0.5" y="8" width="1.5" height="3"/>
+    <rect x="3.5" y="9.5" width="3" height="1.5"/>
+    <rect x="9.5" y="8" width="1.5" height="3"/>
+    <rect x="12.5" y="8" width="3" height="1.5"/>
+    <rect x="18.5" y="9.5" width="1.5" height="1.5"/>
+
+    <!-- Row 6 (Left & Top of Alignment Pattern) -->
+    <rect x="2" y="11" width="1.5" height="1.5"/>
+    <rect x="5" y="11" width="3" height="1.5"/>
+    <rect x="8" y="12.5" width="1.5" height="3"/>
+    <rect x="11" y="11" width="1.5" height="1.5"/>
+    <rect x="14" y="11" width="3" height="1.5"/>
+    <rect x="21.5" y="11" width="2" height="1.5"/>
+
+    <!-- Row 7 -->
+    <rect x="0.5" y="14" width="3" height="1.5"/>
+    <rect x="5" y="14" width="1.5" height="1.5"/>
+    <rect x="9.5" y="14" width="1.5" height="3"/>
+    <rect x="21.5" y="14" width="2" height="3"/>
+
+    <!-- Row 8 -->
+    <rect x="2" y="17" width="1.5" height="1.5"/>
+    <rect x="6.5" y="15.5" width="1.5" height="3"/>
+    <rect x="11" y="17" width="1.5" height="1.5"/>
+
+    <!-- Row 9 -->
+    <rect x="0.5" y="18.5" width="1.5" height="3"/>
+    <rect x="3.5" y="18.5" width="3" height="1.5"/>
+    <rect x="8" y="18.5" width="1.5" height="1.5"/>
+    <rect x="21.5" y="18.5" width="2" height="1.5"/>
+
+    <!-- Row 10 (Bottom Edge) -->
+    <rect x="2" y="21.5" width="3" height="2"/>
+    <rect x="6.5" y="20" width="1.5" height="3.5"/>
+    <rect x="9.5" y="21.5" width="3" height="2"/>
+    <rect x="14" y="21.5" width="1.5" height="2"/>
+    <rect x="17" y="21.5" width="3" height="2"/>
+    <rect x="21.5" y="21.5" width="2" height="2"/>
+  </symbol>
+</svg>
+
 
     <!-- Header Section -->
     <header>
@@ -458,7 +514,7 @@
         <!-- Desktop Buttons (Hidden on Mobile) -->
         <div class="hero-buttons desktop-only">
             <button onclick="toggleModal('qrModal')" class="btn">
-                <div class="qr-icon"><svg width="120%" height="120%"><use href="#qr-svg"></use></svg></div>
+                <div class="qr-icon"><svg width="140%" height="140%"><use href="#qr-svg"></use></svg></div>
                 Install on Phone
             </button>
             <a href="#" class="btn primary">Install Chrome Extension</a>
@@ -468,7 +524,7 @@
         <div class="hero-buttons mobile-only">
             <a href="#" class="btn primary">Install Android App</a>
             <button onclick="toggleModal('qrModal')" class="btn">
-                <div class="qr-icon"><svg width="120%" height="120%"><use href="#qr-svg"></use></svg></div>
+                <div class="qr-icon"><svg width="140%" height="140%"><use href="#qr-svg"></use></svg></div>
                 Share with a Friend
             </button>
         </div>
@@ -607,7 +663,7 @@
                 <!-- Desktop CTA Buttons -->
                 <div class="hero-buttons desktop-only">
                     <button onclick="toggleModal('qrModal')" class="btn">
-                        <div class="qr-icon"><svg width="100%" height="100%"><use href="#qr-svg"></use></svg></div>
+                        <div class="qr-icon"><svg width="140%" height="140%"><use href="#qr-svg"></use></svg></div>
                         Install on Phone
                     </button>
                     <a href="#" class="btn primary">Install Chrome Extension</a>
@@ -617,7 +673,7 @@
                 <div class="hero-buttons mobile-only">
                     <a href="#" class="btn primary">Install Android App</a>
                     <button onclick="toggleModal('qrModal')" class="btn">
-                        <div class="qr-icon"><svg width="100%" height="100%"><use href="#qr-svg"></use></svg></div>
+                        <div class="qr-icon"><svg width="140%" height="140%"><use href="#qr-svg"></use></svg></div>
                         Share with a Friend
                     </button>
                 </div>
@@ -666,7 +722,7 @@
             scrollWrapper.className = i % 2 === 0 ? 'scroll-up' : 'scroll-down';
             scrollWrapper.style.display = 'flex';
             scrollWrapper.style.flexDirection = 'column';
-            scrollWrapper.style.gap = '60px';
+            scrollWrapper.style.gap = '15px';
 
             // Randomize scroll speed between 100 and 180 seconds for organic variation
             const randomDuration = Math.floor(Math.random() * 100) + 80;
