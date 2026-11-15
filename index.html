@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,21 +21,28 @@
                - Soft Lavender:             --glow-color: #c084fc;  --glow-strong: #f3e8ff;
                - Golden Light:              --glow-color: #fcd34d;  --glow-strong: #fffbeb;
             */
-            --glow-color: #fcd34d;     /* The main glowing color (lines, borders, text highlights) */
-            --glow-strong: #ffffff;    /* The brighter color for when buttons are hovered/turned on */
-            
+            --glow-color: #fcd34d;
+            /* The main glowing color (lines, borders, text highlights) */
+            --glow-strong: #ffffff;
+            /* The brighter color for when buttons are hovered/turned on */
+
             /* Background glow gradient - Uses hex + alpha (the '15' at the end means 15% opacity) */
-            --glow-bg-light: #fffbeb25; 
+            --glow-bg-light: #fffbeb20;
 
             /* --- BACKGROUND COLORS --- */
-            --bg-dark: #09090b;        /* Main website background behind everything (Not red, purely dark) */
-            --bg-short-color: #1e1e1e; /* The tiny background scrolling shorts (Reddish tint) */
-            
+            --bg-dark: #09090b;
+            /* Main website background behind everything (Not red, purely dark) */
+            --bg-short-color: #1e1e1e;
+            /* The tiny background scrolling shorts (Reddish tint) */
+
             /* --- APP MOCKUP COLORS --- */
-            --short-bg: #141414;       /* Background color of the big mock YouTube shorts */
-            --text-main: #f5f0f0;      /* Main paragraph text color (off-white) */
-            --text-muted: #888888;     /* Muted text (usernames, secondary info) */
-            
+            --short-bg: #141414;
+            /* Background color of the big mock YouTube shorts */
+            --text-main: #f5f0f0;
+            /* Main paragraph text color (off-white) */
+            --text-muted: #888888;
+            /* Muted text (usernames, secondary info) */
+
             /* ========================================================= */
         }
 
@@ -66,18 +74,18 @@
             height: 140vh;
             z-index: -1;
             display: flex;
-            gap: 35px; 
+            gap: 35px;
             opacity: 0.3;
             overflow: hidden;
             justify-content: center;
-            pointer-events: none; 
-            transform: translateZ(0); 
+            pointer-events: none;
+            transform: translateZ(0);
         }
 
         .bg-col {
             display: flex;
             flex-direction: column;
-            gap: 35px; 
+            gap: 35px;
             width: 60px;
         }
 
@@ -90,16 +98,32 @@
         }
 
         /* Infinite Scroll Animations (Speed is set dynamically in JavaScript below) */
-        .scroll-up { animation: scrollUp linear infinite; }
-        .scroll-down { animation: scrollDown linear infinite; }
+        .scroll-up {
+            animation: scrollUp linear infinite;
+        }
+
+        .scroll-down {
+            animation: scrollDown linear infinite;
+        }
 
         @keyframes scrollUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
         }
+
         @keyframes scrollDown {
-            0% { transform: translateY(-50%); }
-            100% { transform: translateY(0); }
+            0% {
+                transform: translateY(-50%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
 
         /* --- Header & Light Effect --- */
@@ -113,12 +137,12 @@
         header::before {
             content: '';
             position: absolute;
-            top: -50px;
+            top: -250px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 600px;
-            background: radial-gradient(circle, var(--glow-bg-light) 0%, rgba(0,0,0,0) 70%);
+            width: 1200px;
+            height: 900px;
+            background: radial-gradient(circle, var(--glow-bg-light) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -129,7 +153,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #fff;
-            text-shadow: 
+            text-shadow:
                 0 0 10px var(--glow-color),
                 0 0 20px var(--glow-color),
                 0 0 40px var(--glow-bg-light);
@@ -160,7 +184,8 @@
             justify-content: center;
             gap: 12px;
             backdrop-filter: blur(5px);
-            height: 52px; /* Fixed height to control icon proportions */
+            height: 52px;
+            /* Fixed height to control icon proportions */
         }
 
         /* The "Turn On" Hover Effect */
@@ -175,6 +200,7 @@
             color: var(--bg-dark);
             border: none;
         }
+
         .btn.primary:hover {
             background: var(--glow-strong);
             box-shadow: 0 0 20px var(--glow-strong);
@@ -182,18 +208,29 @@
 
         /* QR Icon inside button */
         .qr-icon {
-            height: 120%; /* 80% of button height */
-            aspect-ratio: 1 / 1; /* Keep it perfectly square */
+            height: 120%;
+            /* 80% of button height */
+            aspect-ratio: 1 / 1;
+            /* Keep it perfectly square */
             background: var(--text-main);
-            border-radius: 24px;
+            border-radius: 50%;
             display: flex;
+            flex-shrink: 0;
             align-items: center;
             justify-content: center;
             color: var(--bg-dark);
-            padding: 2px;
+            overflow: hidden;
+            padding: 0;
             transition: all 0.3s ease;
         }
-        
+
+        .qr-icon canvas {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            /* Keeps the 6px boxes sharp */
+        }
+
         /* Swap colors of the icon when hovering on the button */
         .btn:hover .qr-icon {
             background: var(--bg-dark);
@@ -201,13 +238,30 @@
         }
 
         /* Device Specific Display Rules */
-        .mobile-only { display: none !important; }
-        
+        .mobile-only {
+            display: none !important;
+        }
+
         @media (max-width: 768px) {
-            .desktop-only { display: none !important; }
-            .mobile-only { display: flex !important; }
-            .hero-buttons { flex-direction: column; align-items: stretch; width: 100%; max-width: 350px; margin: 0 auto; }
-            .btn { width: 100%; }
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: flex !important;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
 
         /* --- Mock Shorts Section --- */
@@ -216,7 +270,7 @@
             margin: 0 auto;
             padding: 40px 20px 80px;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             align-items: center;
             gap: 50px;
         }
@@ -225,12 +279,12 @@
             position: relative;
             width: 100%;
             max-width: 360px;
-            height: 640px; 
+            height: 640px;
             background-color: var(--short-bg);
             border: 1px solid #2a2a2a;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
         }
@@ -241,8 +295,15 @@
                 opacity: 0;
                 transition: transform 0.8s cubic-bezier(0.1, 0, 0.1, 1), opacity 0.8s ease-out;
             }
-            .mock-short:nth-child(odd) { transform: translateX(-150px); }
-            .mock-short:nth-child(even) { transform: translateX(150px); }
+
+            .mock-short:nth-child(odd) {
+                transform: translateX(-150px);
+            }
+
+            .mock-short:nth-child(even) {
+                transform: translateX(150px);
+            }
+
             .mock-short.visible {
                 transform: translateX(0);
                 opacity: 1;
@@ -258,18 +319,33 @@
             line-height: 1.6;
         }
 
-        .short-text::-webkit-scrollbar { width: 4px; }
-        .short-text::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .short-text::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .short-text::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
 
         .short-text h2 {
             font-size: 1.4rem;
             margin-bottom: 12px;
             color: var(--glow-color);
         }
-        
-        .short-text p, .short-text ul { margin-bottom: 15px; }
-        .short-text ul { padding-left: 20px; }
-        .short-text li { margin-bottom: 8px; }
+
+        .short-text p,
+        .short-text ul {
+            margin-bottom: 15px;
+        }
+
+        .short-text ul {
+            padding-left: 20px;
+        }
+
+        .short-text li {
+            margin-bottom: 8px;
+        }
 
         /* Mock UI Elements */
         .ui-right {
@@ -290,21 +366,32 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         /* 1st Icon: Thumbs Up / Shape */
-        .ui-icon:nth-child(1)::after { 
-            content: ''; width: 20px; height: 20px; background: #fff; 
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); 
+        .ui-icon:nth-child(1)::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
         }
+
         /* 2nd Icon: Comment Bubble / Circle */
-        .ui-icon:nth-child(2)::after { 
-            content: ''; width: 20px; height: 20px; background: #fff; 
-            clip-path: circle(50% at 50% 50%); 
+        .ui-icon:nth-child(2)::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            clip-path: circle(50% at 50% 50%);
         }
+
         /* 3rd Icon: Upward Equilateral Triangle */
-        .ui-icon:nth-child(3)::after { 
-            content: ''; width: 20px; height: 18px; background: #fff; 
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%); 
+        .ui-icon:nth-child(3)::after {
+            content: '';
+            width: 20px;
+            height: 18px;
+            background: #fff;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
         }
 
         .ui-bottom {
@@ -322,6 +409,7 @@
             align-items: center;
             gap: 10px;
         }
+
         .avatar {
             width: 32px;
             height: 32px;
@@ -329,6 +417,7 @@
             border-radius: 50%;
             display: inline-block;
         }
+
         .caption {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -361,6 +450,7 @@
             padding-right: 10px;
             padding-left: 40px;
         }
+
         .cta-short .btn {
             font-size: 0.9rem;
             width: 100%;
@@ -374,7 +464,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             z-index: 100;
             align-items: center;
@@ -406,6 +496,7 @@
             width: 200px;
             height: 200px;
             background: #fff;
+            border-radius: 8px;
             margin: 20px auto;
             display: flex;
             align-items: center;
@@ -415,10 +506,13 @@
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 3rem; }
+            h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Scrolling Tiny Background Shorts -->
@@ -427,59 +521,61 @@
     </div>
 
     <!-- Realistic QR Code Graphic used inside the buttons -->
-<svg style="display:none;">
-  <symbol id="qr-svg" viewBox="0 0 24 24" fill="currentColor">
-    <!-- Coarse 3x3 Data Modules (8x8 Macro Grid Crop) -->
-    <!-- Row 1 -->
-    <rect x="0" y="0" width="3" height="6"/>
-    <rect x="6" y="0" width="6" height="3"/>
-    <rect x="15" y="0" width="3" height="3"/>
-    <rect x="21" y="0" width="3" height="6"/>
+    <svg style="display:none;">
+        <symbol id="qr-svg" viewBox="0 0 24 24" fill="currentColor">
+            <!-- Coarse 3x3 Data Modules (8x8 Macro Grid Crop) -->
+            <!-- Row 1 -->
+            <rect x="0" y="0" width="3" height="6" />
+            <rect x="6" y="0" width="6" height="3" />
+            <rect x="15" y="0" width="3" height="3" />
+            <rect x="21" y="0" width="3" height="6" />
 
-    <!-- Row 2 -->
-    <rect x="3" y="3" width="3" height="3"/>
-    <rect x="12" y="3" width="3" height="6"/>
-    <rect x="18" y="3" width="3" height="3"/>
+            <!-- Row 2 -->
+            <rect x="3" y="3" width="3" height="3" />
+            <rect x="12" y="3" width="3" height="6" />
+            <rect x="18" y="3" width="3" height="3" />
 
-    <!-- Row 3 -->
-    <rect x="6" y="6" width="3" height="6"/>
-    <rect x="15" y="6" width="3" height="3"/>
+            <!-- Row 3 -->
+            <rect x="6" y="6" width="3" height="6" />
+            <rect x="15" y="6" width="3" height="3" />
 
-    <!-- Row 4 -->
-    <rect x="0" y="9" width="3" height="3"/>
-    <rect x="9" y="9" width="3" height="3"/>
-    <rect x="18" y="9" width="6" height="3"/>
+            <!-- Row 4 -->
+            <rect x="0" y="9" width="3" height="3" />
+            <rect x="9" y="9" width="3" height="3" />
+            <rect x="18" y="9" width="6" height="3" />
 
-    <!-- Row 5 -->
-    <rect x="3" y="12" width="3" height="6"/>
-    <rect x="12" y="12" width="6" height="3"/>
+            <!-- Row 5 -->
+            <rect x="3" y="12" width="3" height="6" />
+            <rect x="12" y="12" width="6" height="3" />
 
-    <!-- Row 6 -->
-    <rect x="0" y="15" width="3" height="3"/>
-    <rect x="9" y="15" width="3" height="6"/>
-    <rect x="18" y="15" width="3" height="6"/>
+            <!-- Row 6 -->
+            <rect x="0" y="15" width="3" height="3" />
+            <rect x="9" y="15" width="3" height="6" />
+            <rect x="18" y="15" width="3" height="6" />
 
-    <!-- Row 7 -->
-    <rect x="6" y="18" width="3" height="3"/>
-    <rect x="15" y="18" width="3" height="3"/>
-    <rect x="21" y="18" width="3" height="6"/>
+            <!-- Row 7 -->
+            <rect x="6" y="18" width="3" height="3" />
+            <rect x="15" y="18" width="3" height="3" />
+            <rect x="21" y="18" width="3" height="6" />
 
-    <!-- Row 8 -->
-    <rect x="0" y="21" width="6" height="3"/>
-    <rect x="12" y="21" width="3" height="3"/>
-  </symbol>
-</svg>
+            <!-- Row 8 -->
+            <rect x="0" y="21" width="6" height="3" />
+            <rect x="12" y="21" width="3" height="3" />
+        </symbol>
+    </svg>
 
 
 
     <!-- Header Section -->
     <header>
         <h1 class="glow">DoomStopper</h1>
-        
+
         <!-- Desktop Buttons (Hidden on Mobile) -->
         <div class="hero-buttons desktop-only">
             <button onclick="toggleModal('qrModal')" class="btn">
-                <div class="qr-icon"><svg width="400%" height="400%"><use href="#qr-svg"></use></svg></div>
+                <div class="qr-icon"><svg width="100%" height="100%">
+                        <use href="#qr-svg"></use>
+                    </svg></div>
                 Install on Phone
             </button>
             <a href="#" class="btn primary">Install Chrome Extension</a>
@@ -489,7 +585,9 @@
         <div class="hero-buttons mobile-only">
             <a href="#" class="btn primary">Install Android App</a>
             <button onclick="toggleModal('qrModal')" class="btn">
-                <div class="qr-icon"><svg width="400%" height="400%"><use href="#qr-svg"></use></svg></div>
+                <div class="qr-icon"><svg width="100%" height="100%">
+                        <use href="#qr-svg"></use>
+                    </svg></div>
                 Share with a Friend
             </button>
         </div>
@@ -501,27 +599,11 @@
         <!-- Short 1 -->
         <div class="mock-short">
             <div class="short-text">
-                <h2>The Trap</h2>
-                <p>Ever opened YouTube intending to watch one video, only to realize you just lost an hour to Shorts?</p>
-                <p>You didn't fail at willpower... the algorithm is just designed to keep you swiping on autopilot.</p>
-            </div>
-            <div class="ui-right">
-                <div class="ui-icon"></div>
-                <div class="ui-icon"></div>
-                <div class="ui-icon"></div>
-            </div>
-            <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @TheProblem</div>
-                <div class="caption">Why you can't stop scrolling...</div>
-            </div>
-        </div>
-
-        <!-- Short 2 -->
-        <div class="mock-short">
-            <div class="short-text">
-                <h2>The Solution</h2>
-                <p><strong>DoomStopper</strong> is a different kind of blocker.</p>
-                <p>Instead of blocking YouTube completely (which usually just makes you turn the blocker off), it uses gradual friction to gently snap you out of the scrolling trance.</p>
+                <h2>DoomStopper</h2>
+                <p>Ever opened YouTube / TikTok / Instagram intending to watch one video, only to realize you just lost
+                    an hour to Shorts?
+                </p>
+                <p>DoomStopper ends that once and for all with a combination of neroscience and social engineering.</p>
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -530,19 +612,41 @@
             </div>
             <div class="ui-bottom">
                 <div class="username"><span class="avatar"></span> @DoomStopper</div>
-                <div class="caption">A different kind of blocker 🛑</div>
+                <div class="caption">The app that will change your life</div>
+            </div>
+        </div>
+
+        <!-- Short 2 -->
+        <div class="mock-short">
+            <div class="short-text">
+                <h2>The Science</h2>
+                <p>Dopamine is the chemical in your brain responsible for reward, essentialy the chemical that tells
+                    your
+                    brain "do that again. Each time you scroll, your brain
+                    releases a spike of dopamine.</p>
+                <p> It
+                    works exactly like a slot machine: your brain is constantly anticipating a "win," so you keep
+                    pulling the lever.</p>
+            </div>
+            <div class="ui-right">
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+            </div>
+            <div class="ui-bottom">
+                <div class="username"><span class="avatar"></span> @MrNeroScience</div>
+                <div class="caption">How shorts hijack your brain</div>
             </div>
         </div>
 
         <!-- Short 3 -->
         <div class="mock-short">
             <div class="short-text">
-                <h2>How It Works</h2>
-                <ul>
-                    <li><strong>Starts Invisible:</strong> The first scroll delay is 0 seconds. You won't even notice it.</li>
-                    <li><strong>Gradual Friction:</strong> Every new Short adds a tiny 50-millisecond gray screen.</li>
-                    <li><strong>Unbothersome:</strong> It's slow enough that you won't notice it video by video.</li>
-                </ul>
+                <h2>The Problem</h2>
+                <p>Overwhelmed by this, the decision-making part of your brain goes quiet, leving
+                    you to scroll mindlessly for hours without even realising your doing it.</p>
+                <p>Worse, your brain, overwelemed by the amount of dopamine, kills
+                    off its own receptors, making normal everyday things feel much less interesting.</p>
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -550,24 +654,67 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @HowItWorks</div>
-                <div class="caption">Slow and steady wins the race 🐢</div>
+                <div class="username"><span class="avatar"></span> @ThatsCalledAdiction</div>
+                <div class="caption">Why this video is bad for you</div>
             </div>
         </div>
+
+        <div class="mock-short">
+            <div class="short-text">
+                <h2>The Solution</h2>
+                <p><strong>DoomStopper</strong> works, not by simply blocking the app, (which would just encourage you
+                    to turn it off), but by intruducing a gradual delay between shorts to break the dopamine loop, and
+                    snap you out of the
+                    scrolling trance.</p>
+            </div>
+            <div class="ui-right">
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+            </div>
+            <div class="ui-bottom">
+                <div class="username"><span class="avatar"></span> @IFixIt</div>
+                <div class="caption">How to stop scrolling</div>
+            </div>
+        </div>
+
+        <div class="mock-short">
+            <div class="short-text">
+                <h2>How It Works</h2>
+                <ul>
+                    <li><strong>Starts Invisible:</strong> The first scroll delay is 0 seconds. You won't even notice
+                        it.</li>
+                    <li><strong>Gradual Friction:</strong> Every new Short adds a tiny 50-millisecond gray screen.</li>
+                    <li><strong>Unbothersome:</strong> It's slow enough that you won't notice it increasing video by
+                        video.</li>
+                </ul>
+                <p>After about 20 videos you will begin to see the delay screen with stats about how much time
+                    the app has saved you.</p>
+            </div>
+            <div class="ui-right">
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+                <div class="ui-icon"></div>
+            </div>
+            <div class="ui-bottom">
+                <div class="username"><span class="avatar"></span> @TheWayThingsWork</div>
+                <div class="caption">How the crazy new DoomStopper app works ;)</div>
+            </div>
+        </div>
+
+        <img class="mock-short" src="https://i.imgur.com/MhWAQet.png" alt="DoomStopper App Screenshot">
 
         <!-- Short 4 (Image Placeholder) -->
         <div class="mock-short">
             <div class="short-text">
-                <h2>The Reality Check</h2>
-                <p>After about 20 videos, you'll finally see the delay.</p>
-                
-                <!-- PLACEHOLDER FOR YOUR APP SCREENSHOT -->
-                <div class="img-placeholder">
-                    [Place your block screen image here] <br><br>
-                    &lt;img src="screenshot.png"&gt;
-                </div>
-
-                <p>Eventually, the delay becomes just long (and boring) enough that your brain decides to close the tab.</p>
+                <h2>What It Does</h2>
+                <p>That gray screen acts as a <strong>pattern interrupt</strong>, it creates just enough empty space for
+                    your logical brain to wake up and ask, "Wait, am I actually enjoying this, or am I just scrolling?".
+                </p>
+                <p>Additionally, a gray screen with numbers on it releases zero dopamine. It reduces the excitement of
+                    the scroll because your brain learns that swiping no longer equals an instant reward; instead, each
+                    scroll equals a boring period of waiting.
+                </p>
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -575,7 +722,7 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @TheWakeUpCall</div>
+                <div class="username"><span class="avatar"></span> @DopamineDetox</div>
                 <div class="caption">Breaking the trance...</div>
             </div>
         </div>
@@ -583,10 +730,10 @@
         <!-- Short 5 -->
         <div class="mock-short">
             <div class="short-text">
-                <h2>The Science</h2>
-                <p>Dopamine tells your brain, "do that again." Each time you scroll, anticipating the next video, your brain spikes with dopamine.</p>
-                <p>It works exactly like a slot machine. Overwhelmed, your prefrontal cortex (the logical brain) goes quiet.</p>
-                <p>Worse, your brain kills off receptors to compensate, making real life feel incredibly boring.</p>
+                <h2>The Long Term</h2>
+                <p>By increasing the wait time very slowly, each scroll releases a tiny bit less dopamine. Not enough
+                    that it feels overly frustrating, but just enough that your brain starts reviving those dead
+                    dopamine receptors, making normal, everyday hobbies feel fun again.</p>
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -594,27 +741,8 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @BrainScience</div>
-                <div class="caption">Dopamine and the slot machine 🎰</div>
-            </div>
-        </div>
-
-        <!-- Short 6 -->
-        <div class="mock-short">
-            <div class="short-text">
-                <h2>The Fix</h2>
-                <p>Friction breaks the loop. That brief gray screen acts as a <strong>"pattern interrupt."</strong></p>
-                <p>It gives your logical brain space to ask, "Am I enjoying this, or just scrolling?"</p>
-                <p>Because swiping no longer equals an instant reward, your brain starts reviving dopamine receptors, making normal hobbies fun again.</p>
-            </div>
-            <div class="ui-right">
-                <div class="ui-icon"></div>
-                <div class="ui-icon"></div>
-                <div class="ui-icon"></div>
-            </div>
-            <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @TheFix</div>
-                <div class="caption">Rewiring your rewards 🧠</div>
+                <div class="username"><span class="avatar"></span> @WordsOfEncouragement</div>
+                <div class="caption">Things will get better...</div>
             </div>
         </div>
 
@@ -624,11 +752,13 @@
                 <h2>Take Control</h2>
                 <p>Stop scrolling on autopilot. Install DoomStopper and get your time and happiness back.</p>
                 <br>
-                
+
                 <!-- Desktop CTA Buttons -->
                 <div class="hero-buttons desktop-only">
                     <button onclick="toggleModal('qrModal')" class="btn">
-                        <div class="qr-icon"><svg width="400%" height="400%"><use href="#qr-svg"></use></svg></div>
+                        <div class="qr-icon"><svg width="100%" height="100%">
+                                <use href="#qr-svg"></use>
+                            </svg></div>
                         Install on Phone
                     </button>
                     <a href="#" class="btn primary">Install Chrome Extension</a>
@@ -638,7 +768,9 @@
                 <div class="hero-buttons mobile-only">
                     <a href="#" class="btn primary">Install Android App</a>
                     <button onclick="toggleModal('qrModal')" class="btn">
-                        <div class="qr-icon"><svg width="400%" height="400%"><use href="#qr-svg"></use></svg></div>
+                        <div class="qr-icon"><svg width="100%" height="100%">
+                                <use href="#qr-svg"></use>
+                            </svg></div>
                         Share with a Friend
                     </button>
                 </div>
@@ -650,8 +782,8 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @TakeControl</div>
-                <div class="caption">Link in bio! 📲</div>
+                <div class="username"><span class="avatar"></span> @DoomStopper</div>
+                <div class="caption">Link in bio!</div>
             </div>
         </div>
 
@@ -663,12 +795,9 @@
             <button class="close-btn" onclick="toggleModal('qrModal')">&times;</button>
             <h2>Get the App</h2>
             <p style="margin-top: 10px; color: var(--text-muted);">Scan this code with a phone</p>
-            
+
             <!-- Replace this div with an actual <img> tag of your QR code -->
-            <div class="qr-placeholder">
-                [ QR Code Image ]<br>
-                Replace with &lt;img&gt;
-            </div>
+            <img src="https://i.imgur.com/oVPFC6F.jpeg" class="qr-placeholder">
         </div>
     </div>
 
@@ -676,15 +805,15 @@
         // 1. Generate Background Scrolling Shorts
         const bgContainer = document.getElementById('bg-container');
         // Calculate number of columns to overfill screen bounds securely
-        const numCols = Math.floor((window.innerWidth * 1.5) / 75) + 2; 
+        const numCols = Math.floor((window.innerWidth * 1.5) / 75) + 2;
         const blocksPerCol = 30; // Plenty of blocks to allow slow scrolling
 
         for (let i = 0; i < numCols; i++) {
             const col = document.createElement('div');
             col.className = 'bg-col';
-            
+
             const scrollWrapper = document.createElement('div');
-            scrollWrapper.className = i % 2 === 0 ? 'scroll-up' : 'scroll-down';
+            scrollWrapper.className = Math.random() > 0.3 ? 'scroll-up' : 'scroll-down';
             scrollWrapper.style.display = 'flex';
             scrollWrapper.style.flexDirection = 'column';
             scrollWrapper.style.gap = '35px';
@@ -692,13 +821,13 @@
             // Randomize scroll speed between 100 and 180 seconds for organic variation
             const randomDuration = Math.floor(Math.random() * 100) + 80;
             scrollWrapper.style.animationDuration = `${randomDuration}s`;
-            
-            for (let j = 0; j < blocksPerCol * 2; j++) { 
+
+            for (let j = 0; j < blocksPerCol * 2; j++) {
                 const block = document.createElement('div');
                 block.className = 'bg-short';
                 scrollWrapper.appendChild(block);
             }
-            
+
             col.appendChild(scrollWrapper);
             bgContainer.appendChild(col);
         }
@@ -727,20 +856,62 @@
             const modal = document.getElementById(modalId);
             if (modal.style.display === 'flex') {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; 
+                document.body.style.overflow = 'auto';
             } else {
                 modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; 
+                document.body.style.overflow = 'hidden';
             }
         }
 
         // Close modal if user clicks outside the modal content box
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('qrModal');
             if (event.target === modal) {
                 toggleModal('qrModal');
             }
         }
+
+        // Generates random zoomed-in QR pixel data inside every QR icon
+        // Generates random QR pixel data biased to alternate colors
+        document.querySelectorAll('.qr-icon').forEach(icon => {
+            const canvas = document.createElement('canvas');
+            const cols = 7;
+            const rows = 7;
+            const blockSize = 6;
+            canvas.width = cols * blockSize;
+            canvas.height = rows * blockSize;
+            const ctx = canvas.getContext('2d');
+
+            // 2D grid to track pixel colors (1 = white, 0 = black)
+            const grid = [];
+
+            for (let y = 0; y < rows; y++) {
+                grid[y] = [];
+                for (let x = 0; x < cols; x++) {
+                    let pWhite = 0.52; // Base 50/50 chance
+
+                    // Bias away from the left neighbor's color
+                    if (x > 0) {
+                        pWhite += (grid[y][x - 1] === 1 ? -0.12 : 0.12);
+                    }
+                    // Bias away from the top neighbor's color
+                    if (y > 0) {
+                        pWhite += (grid[y - 1][x] === 1 ? -0.12 : 0.12);
+                    }
+
+                    // Pick color based on the calculated bias
+                    const isWhite = Math.random() < pWhite;
+                    grid[y][x] = isWhite ? 1 : 0;
+
+                    ctx.fillStyle = isWhite ? '#ffffff' : '#000000';
+                    ctx.fillRect(x * blockSize, y * blockSize, blockSize, blockSize);
+                }
+            }
+
+            icon.innerHTML = '';
+            icon.appendChild(canvas);
+        });
     </script>
 </body>
+
 </html>
