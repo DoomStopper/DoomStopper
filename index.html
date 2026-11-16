@@ -443,6 +443,32 @@
             padding: 20px;
         }
 
+        /* Slowly bouncing down arrow */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 82px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--glow-color);
+            opacity: 0.8;
+            animation: slowBounce 2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes slowBounce {
+
+            0%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 8px);
+                /* Bounces down 8px */
+            }
+        }
+
         /* Last Short specific styling */
         .cta-short .hero-buttons {
             flex-direction: column;
@@ -509,11 +535,13 @@
             h1 {
                 font-size: 2.5rem;
             }
+
             header::before {
-        width: 85vw;    /* Shrinks glow to 85% of phone screen width */
-        height: 85vw;
-        top: 20px;
-    }
+                width: 85vw;
+                /* Shrinks glow to 85% of phone screen width */
+                height: 85vw;
+                top: 20px;
+            }
         }
     </style>
 </head>
@@ -583,12 +611,14 @@
                     </svg></div>
                 Install on Phone
             </button>
-            <a href="#" class="btn primary">Install Chrome Extension</a>
+            <a href="https://chromewebstore.google.com/detail/DoomStopper:%20stops%20the%20urge%20to%20doomscroll%20in%20YouTube%20shorts/moncnbjmnfbjfpbncpmipnkkcppfkjmn?hl=en&authuser=0"
+                class="btn primary">Install Chrome Extension</a>
         </div>
 
         <!-- Mobile Buttons (Hidden on Desktop) -->
         <div class="hero-buttons mobile-only">
-            <a href="#" class="btn primary">Install Android App</a>
+            <a href="https://github.com/DoomStopper/DoomStopper/releases/latest/download/DoomStopper.apk"
+                class="btn primary" download>Install Android App</a>
             <button onclick="toggleModal('qrModal')" class="btn">
                 <div class="qr-icon"><svg width="100%" height="100%">
                         <use href="#qr-svg"></use>
@@ -614,6 +644,12 @@
                 <div class="ui-icon"></div>
                 <div class="ui-icon"></div>
                 <div class="ui-icon"></div>
+            </div>
+            <div class="scroll-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
             </div>
             <div class="ui-bottom">
                 <div class="username"><span class="avatar"></span> @DoomStopper</div>
@@ -766,12 +802,14 @@
                             </svg></div>
                         Install on Phone
                     </button>
-                    <a href="#" class="btn primary">Install Chrome Extension</a>
+                    <a href="https://chromewebstore.google.com/detail/DoomStopper:%20stops%20the%20urge%20to%20doomscroll%20in%20YouTube%20shorts/moncnbjmnfbjfpbncpmipnkkcppfkjmn?hl=en&authuser=0"
+                        class="btn primary">Install Chrome Extension</a>
                 </div>
 
                 <!-- Mobile CTA Buttons -->
                 <div class="hero-buttons mobile-only">
-                    <a href="#" class="btn primary">Install Android App</a>
+                    <a href="https://github.com/DoomStopper/DoomStopper/releases/latest/download/DoomStopper.apk"
+                        class="btn primary" download>Install Android App</a>
                     <button onclick="toggleModal('qrModal')" class="btn">
                         <div class="qr-icon"><svg width="100%" height="100%">
                                 <use href="#qr-svg"></use>
