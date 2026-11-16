@@ -7,43 +7,26 @@
     <title>DoomStopper</title>
     <style>
         :root {
-            /* =========================================================
-               🎨 COLOR SETTINGS
-               Change the hex codes below to completely change the theme!
-               ========================================================= */
-
-            /* --- MAIN GLOW & BUTTON COLORS --- */
-            /* 
-               SUGGESTIONS:
-               - Cool Icy Blue (Current):   --glow-color: #a5b4fc;  --glow-strong: #ffffff;
-               - Cyberpunk Neon Blue:       --glow-color: #00e5ff;  --glow-strong: #e0ffff;
-               - Toxic Matrix Green:        --glow-color: #4ade80;  --glow-strong: #a7f3d0;
-               - Soft Lavender:             --glow-color: #c084fc;  --glow-strong: #f3e8ff;
-               - Golden Light:              --glow-color: #fcd34d;  --glow-strong: #fffbeb;
-            */
+            
             --glow-color: #fcd34d;
-            /* The main glowing color (lines, borders, text highlights) */
-            --glow-strong: #ffffff;
-            /* The brighter color for when buttons are hovered/turned on */
 
-            /* Background glow gradient - Uses hex + alpha (the '15' at the end means 15% opacity) */
+            --glow-strong: #ffffff;
+
             --glow-bg-light: #fffbeb20;
 
-            /* --- BACKGROUND COLORS --- */
+
             --bg-dark: #09090b;
-            /* Main website background behind everything (Not red, purely dark) */
+
             --bg-short-color: #1e1e1e;
-            /* The tiny background scrolling shorts (Reddish tint) */
 
-            /* --- APP MOCKUP COLORS --- */
+
+
             --short-bg: #141414;
-            /* Background color of the big mock YouTube shorts */
-            --text-main: #f5f0f0;
-            /* Main paragraph text color (off-white) */
-            --text-muted: #888888;
-            /* Muted text (usernames, secondary info) */
 
-            /* ========================================================= */
+            --text-main: #f5f0f0;
+
+            --text-muted: #888888;
+
         }
 
         * {
@@ -62,11 +45,6 @@
 
         /* --- Background Scrolling Shorts --- */
         #bg-container {
-            /* 
-               Fixed position and over-scaled bounds + pointer-events: none 
-               prevents the mobile browser from dragging the background 
-               and showing the black bar at the bottom. 
-            */
             position: fixed;
             top: -20vh;
             left: -20vw;
@@ -185,10 +163,9 @@
             gap: 12px;
             backdrop-filter: blur(5px);
             height: 52px;
-            /* Fixed height to control icon proportions */
         }
 
-        /* The "Turn On" Hover Effect */
+
         .btn:hover {
             background: var(--glow-color);
             color: var(--bg-dark);
@@ -209,9 +186,7 @@
         /* QR Icon inside button */
         .qr-icon {
             height: 120%;
-            /* 80% of button height */
             aspect-ratio: 1 / 1;
-            /* Keep it perfectly square */
             background: var(--text-main);
             border-radius: 50%;
             display: flex;
@@ -228,10 +203,10 @@
             width: 100%;
             height: 100%;
             image-rendering: pixelated;
-            /* Keeps the 6px boxes sharp */
+
         }
 
-        /* Swap colors of the icon when hovering on the button */
+
         .btn:hover .qr-icon {
             background: var(--bg-dark);
             color: var(--glow-color);
@@ -367,7 +342,7 @@
             justify-content: center;
         }
 
-        /* 1st Icon: Thumbs Up / Shape */
+
         .ui-icon:nth-child(1)::after {
             content: '';
             width: 20px;
@@ -376,7 +351,7 @@
             clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
         }
 
-        /* 2nd Icon: Comment Bubble / Circle */
+
         .ui-icon:nth-child(2)::after {
             content: '';
             width: 20px;
@@ -385,7 +360,7 @@
             clip-path: circle(50% at 50% 50%);
         }
 
-        /* 3rd Icon: Upward Equilateral Triangle */
+
         .ui-icon:nth-child(3)::after {
             content: '';
             width: 20px;
@@ -426,7 +401,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Image Placeholder */
         .img-placeholder {
             width: 100%;
             height: 250px;
@@ -443,7 +417,6 @@
             padding: 20px;
         }
 
-        /* Slowly bouncing down arrow */
         .scroll-arrow {
             position: absolute;
             bottom: 82px;
@@ -465,7 +438,6 @@
 
             50% {
                 transform: translate(-50%, 8px);
-                /* Bounces down 8px */
             }
         }
 
@@ -538,7 +510,6 @@
 
             header::before {
                 width: 85vw;
-                /* Shrinks glow to 85% of phone screen width */
                 height: 85vw;
                 top: 20px;
             }
@@ -638,7 +609,7 @@
                 <p>Ever opened YouTube / TikTok / Instagram intending to watch one video, only to realize you just lost
                     an hour to Shorts?
                 </p>
-                <p>DoomStopper ends that once and for all with a combination of neroscience and social engineering.</p>
+                <p>DoomStopper ends that once and for all with a combination of neuroscience and social engineering.</p>
             </div>
             <div class="ui-right">
                 <div class="ui-icon"></div>
@@ -661,7 +632,7 @@
         <div class="mock-short">
             <div class="short-text">
                 <h2>The Science</h2>
-                <p>Dopamine is the chemical in your brain responsible for reward, essentialy the chemical that tells
+                <p>Dopamine is the chemical in your brain responsible for reward, essentially the chemical that tells
                     your
                     brain "do that again. Each time you scroll, your brain
                     releases a spike of dopamine.</p>
@@ -675,7 +646,7 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @MrNeroScience</div>
+                <div class="username"><span class="avatar"></span> @MrNeuroScience</div>
                 <div class="caption">How shorts hijack your brain</div>
             </div>
         </div>
@@ -684,9 +655,9 @@
         <div class="mock-short">
             <div class="short-text">
                 <h2>The Problem</h2>
-                <p>Overwhelmed by this, the decision-making part of your brain goes quiet, leving
-                    you to scroll mindlessly for hours without even realising your doing it.</p>
-                <p>Worse, your brain, overwelemed by the amount of dopamine, kills
+                <p>Overwhelmed by this, the decision-making part of your brain goes quiet, leaving
+                    you to scroll mindlessly for hours without even realizing you're doing it.</p>
+                <p>Worse, your brain, overwhelmed by the amount of dopamine, kills
                     off its own receptors, making normal everyday things feel much less interesting.</p>
             </div>
             <div class="ui-right">
@@ -695,7 +666,7 @@
                 <div class="ui-icon"></div>
             </div>
             <div class="ui-bottom">
-                <div class="username"><span class="avatar"></span> @ThatsCalledAdiction</div>
+                <div class="username"><span class="avatar"></span> @ThatsCalledAddiction</div>
                 <div class="caption">Why this video is bad for you</div>
             </div>
         </div>
@@ -704,7 +675,7 @@
             <div class="short-text">
                 <h2>The Solution</h2>
                 <p><strong>DoomStopper</strong> works, not by simply blocking the app, (which would just encourage you
-                    to turn it off), but by intruducing a gradual delay between shorts to break the dopamine loop, and
+                    to turn it off), but by introducing a gradual delay between shorts to break the dopamine loop, and
                     snap you out of the
                     scrolling trance.</p>
             </div>
